@@ -1,1 +1,49 @@
+:root {
+  --accent: #ba181b;
+}
 
+body {
+  margin: 0;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+}
+
+img {
+  width: 5em;
+}
+
+.user-icon {
+  display: inline-block;
+  position: relative;
+  background-color: var(--accent);
+  padding: 0.2em;
+  height: 1.5em;
+  width: 1.5em;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.user-icon::before {
+  content: "";
+  position: absolute;
+  width: 2.25em;
+  height: 2.25em;
+  border: 2px solid white;
+  border-radius: 50%;
+  top: -4px;
+  right: -4px;
+}
+
+.search-input {
+  border: 2px solid;
+  height: 2em;
+  width: 14.5em;
+  border-radius: 2em;
+  text-align: center;
+}
