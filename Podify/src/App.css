@@ -151,3 +151,22 @@ img {
     height: 3.75em;
   }
 }
+
+/* Footer */
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  flex-shrink: 0;
+  height: 5em;
+  background-color: var(--primary-dark);
+  border-top: 1px solid var(--text-color);
+}
+
+.site-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
