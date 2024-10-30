@@ -19,14 +19,15 @@ img {
 }
 
 .user-icon {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   background-color: var(--accent);
   padding: 0.2em;
   height: 1.5em;
   width: 1.5em;
   border-radius: 50%;
-  text-align: center;
 }
 
 .user-icon::before {
@@ -46,4 +47,102 @@ img {
   width: 14.5em;
   border-radius: 2em;
   text-align: center;
+}
+/* Small screens (Tablets, 600px and up) */
+@media (min-width: 600px) {
+  nav {
+    padding: 1em;
+  }
+
+  img {
+    width: 6em;
+  }
+
+  .search-input {
+    width: 18em;
+  }
+
+  .user-icon {
+    height: 2em;
+    width: 2em;
+  }
+  .user-icon::before {
+    width: 2.75em;
+    height: 2.75em;
+  }
+}
+/* Medium screens (Desktops, 768px and up) */
+@media (min-width: 768px) {
+  nav {
+    padding: 1em 2em;
+  }
+
+  img {
+    width: 7em;
+  }
+
+  .search-input {
+    width: 20em;
+  }
+
+  .user-icon {
+    height: 2.5em;
+    width: 2.5em;
+  }
+  .user-icon::before {
+    width: 3.25em;
+    height: 3.25em;
+  }
+}
+
+/* Large screens (Large desktops, 1024px and up) */
+@media (min-width: 1024px) {
+  nav {
+    padding: 1em 3em;
+    gap: 1.5em;
+  }
+
+  img {
+    width: 8em;
+  }
+
+  .search-input {
+    width: 22em;
+  }
+
+  .user-icon {
+    height: 2.75em;
+    width: 2.75em;
+  }
+
+  .user-icon::before {
+    width: 3.5em;
+    height: 3.5em;
+  }
+}
+
+/* Extra large screens (1200px and up) */
+@media (min-width: 1200px) {
+  nav {
+    padding: 1.5em 4em;
+    gap: 2em;
+  }
+
+  img {
+    width: 9em;
+  }
+
+  .search-input {
+    width: 24em;
+  }
+
+  .user-icon {
+    height: 3em;
+    width: 3em;
+  }
+
+  .user-icon::before {
+    width: 3.75em;
+    height: 3.75em;
+  }
 }
