@@ -5,4 +5,6 @@ import axios from "axios";
 export default function Home() {
   const [podcasts, setpodcasts] = useState([]);
   const [error, setError] = useState(null);
+
+  useEffect(() => {});
 }
