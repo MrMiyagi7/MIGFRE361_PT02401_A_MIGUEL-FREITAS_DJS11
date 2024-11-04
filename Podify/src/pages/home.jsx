@@ -6,5 +6,14 @@ export default function Home() {
   const [podcasts, setpodcasts] = useState([]);
   const [error, setError] = useState(null);
 
-  useEffect(() => {});
+  useEffect(() => {
+    const fetchPodcasts = async ()=> {
+      try {
+        const response = await axios.get("https://podcast-api.netlify.app");
+        const sortedPodcasts = response.data.sort((a, b) => a.title.locaCompare(b.title)
+      );
+      setpodcasts(sortedPodcasts);
+      } 
+    }
+  });
 }
