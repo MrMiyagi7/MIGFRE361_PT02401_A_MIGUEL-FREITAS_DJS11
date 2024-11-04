@@ -21,4 +21,6 @@ export default function Home() {
 
     fetchPodcasts();
   }, []);
+
+  if (error) return <p>{error}</p>;
 }
