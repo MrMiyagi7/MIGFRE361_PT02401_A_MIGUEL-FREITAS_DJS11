@@ -20,5 +20,13 @@ export default function ShowDetails() {
       }
     };
     fetchShowDetails();
-  });
+  }, [id]);
+
+  // Toggle visibility for a season
+  const toggleSeason = (seasonNumber) => {
+    setExpandedSeasons((prevExpanded) => ({
+      ...prevExpanded,
+      [seasonNumber]: !prevExpanded[seasonNumber],
+    }));
+  };
 }
