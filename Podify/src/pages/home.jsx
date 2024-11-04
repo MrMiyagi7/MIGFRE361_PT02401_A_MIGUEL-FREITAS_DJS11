@@ -10,7 +10,9 @@ export default function Home() {
   useEffect(() => {
     const fetchPodcasts = async () => {
       try {
-        const response = await axios.get("https://podcast-api.netlify.app");
+        const response = await axios.get(
+          /* used axios hook to handle api fetch instead of using .then blocks (simplyfies api fetch)*/ "https://podcast-api.netlify.app"
+        );
         const sortedPodcasts = response.data.sort((a, b) =>
           a.title.localeCompare(b.title)
         );
