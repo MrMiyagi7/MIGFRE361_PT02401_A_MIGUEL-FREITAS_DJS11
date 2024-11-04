@@ -8,5 +8,17 @@ export default function ShowDetails() {
   const [error, setError] = useState(null);
   const [expandedSeasons, setExpandedSeasons] = useState({});
 
-  useEffect(() => {});
+  useEffect(() => {
+    const fetchShowDetails = async () => {
+      try {
+        const response = await axios.get(
+          "https://podcast-api.netlify.app/id/${id}"
+        );
+        setShowDetails(response.data);
+      } catch (error) {
+        setError("Failed to fetch show details");
+      }
+    };
+    fetchShowDetails();
+  });
 }
