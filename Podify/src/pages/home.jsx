@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "../home.css";
 
 export default function Home() {
   const [podcasts, setPodcasts] = useState([]);
@@ -15,7 +16,7 @@ export default function Home() {
         );
         setPodcasts(sortedPodcasts);
       } catch (error) {
-        setError("Failed to Fetch podcasts");
+        setError("Failed to fetch podcasts");
       }
     };
 
@@ -25,8 +26,8 @@ export default function Home() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="product-previews">
-      {podcasts === 0 ? (
+    <div className="podcast-previews">
+      {podcasts.length === 0 ? (
         <p>Loading podcasts...</p>
       ) : (
         podcasts.map((podcast) => (
