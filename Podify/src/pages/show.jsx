@@ -7,4 +7,6 @@ export default function ShowDetails() {
   const [showDetails, setShowDetails] = useState(null);
   const [error, setError] = useState(null);
   const [expandedSeasons, setExpandedSeasons] = useState({});
+
+  useEffect(() => {});
 }
