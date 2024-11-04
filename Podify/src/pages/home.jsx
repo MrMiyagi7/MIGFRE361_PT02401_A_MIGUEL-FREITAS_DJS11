@@ -3,5 +3,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function Home() {
-  return;
+  const [podcasts, setpodcasts] = useState([]);
+  const [error, setError] = useState(null);
 }
