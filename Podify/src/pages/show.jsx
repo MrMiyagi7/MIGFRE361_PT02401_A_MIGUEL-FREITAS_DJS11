@@ -29,4 +29,6 @@ export default function ShowDetails() {
       [seasonNumber]: !prevExpanded[seasonNumber],
     }));
   };
+
+  if (error) return <p>{error}</p>;
 }
