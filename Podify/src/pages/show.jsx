@@ -12,7 +12,7 @@ export default function ShowDetails() {
     const fetchShowDetails = async () => {
       try {
         const response = await axios.get(
-          "https://podcast-api.netlify.app/id/${id}"
+          `https://podcast-api.netlify.app/id/${id}`
         );
         setShowDetails(response.data);
       } catch (error) {
