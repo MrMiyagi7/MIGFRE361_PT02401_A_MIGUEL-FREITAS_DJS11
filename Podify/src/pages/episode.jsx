@@ -23,3 +23,10 @@ export default function EpisodeDetails() {
         );
 
         setEpisode(selectedEpisode);
+      } catch (error) {
+        setError("Failed to load episode details.");
+      }
+    };
+
+    fetchEpisode();
+  }, [id, seasonNumber, episodeId]);
