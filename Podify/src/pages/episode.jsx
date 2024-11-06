@@ -34,3 +34,18 @@ export default function EpisodeDetails() {
   console.log(episode);
   if (error) return <p>{error}</p>;
   if (!episode) return <div className="loader"></div>;
+
+  return (
+    <div className="episode-details">
+      <Link className="back-button" to={`/show/${id}`}>
+        ← Back
+      </Link>
+      <h2>{episode.title}</h2>
+      <p>{episode.description}</p>
+      <audio controls>
+        <source src={episode.file} type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+  );
+}
