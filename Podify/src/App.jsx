@@ -5,6 +5,7 @@ import Layout from "../components/layout";
 import Home from "./pages/home";
 import ShowDetails from "./pages/show";
 import EpisodeDetails from "./pages/episode";
+import Favourites from "./pages/favourite";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             path="/show/:id/season/:seasonNumber/episode/:episodeId"
             element={<EpisodeDetails />}
           />
+          <Route path="/favourites" element={<Favourites />} />
         </Route>
       </Routes>
     </BrowserRouter>
