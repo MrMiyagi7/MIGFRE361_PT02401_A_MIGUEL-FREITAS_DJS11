@@ -64,6 +64,8 @@ export default function Home() {
       setError("Failed to fetch podcasts for selected genre");
     }
   };
+
+  useEffect(() => {
     fetchPodcasts();
   }, []);
 
