@@ -54,18 +54,22 @@ export default function ShowDetails() {
   };
 
   if (error) return <p>{error}</p>;
-  if (!showDetails) return <p>Loading show details...</p>;
   if (!showDetails) return <div className="loader"></div>;
 
   return (
     <div className="show-details">
+      <Link className="back-button" to="/">
+        ← Back
+      </Link>
       <h1>{showDetails.title}</h1>
       <img src={showDetails.image} alt={`${showDetails.title} cover`} />
       <p>{showDetails.description}</p>
-
+      <button onClick={handleFavourite}>
+        {isFavourite ? "Unfavourite" : "Add to Favourites"}
+      </button>
       <h2>Seasons</h2>
       {showDetails.seasons && showDetails.seasons.length > 0 ? (
-        showDetails.seasons.map((season, index) => (
+        showDetails.seasons.map((season) => (
           <div key={season.season} className="season">
             <h3 onClick={() => toggleSeason(season.season)}>
               Season {season.season}{" "}
@@ -74,8 +78,6 @@ export default function ShowDetails() {
             {expandedSeasons[season.season] && (
               <ul>
                 {season.episodes.map((episode) => (
-                  <li key={episode.id}>
-                    <strong>{episode.title}</strong>: {episode.description}
                   <li key={episode.episode}>
                     <Link
                       to={`/show/${id}/season/${season.season}/episode/${episode.episode}`}
