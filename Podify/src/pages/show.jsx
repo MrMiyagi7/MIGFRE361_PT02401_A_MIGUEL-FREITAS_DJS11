@@ -28,12 +28,29 @@ export default function ShowDetails() {
     fetchShowDetails();
   }, [id]);
 
-  // Toggle visibility for a season
+  //   Toggle visibility for a season
   const toggleSeason = (seasonNumber) => {
     setExpandedSeasons((prevExpanded) => ({
       ...prevExpanded,
       [seasonNumber]: !prevExpanded[seasonNumber],
     }));
+  };
+  const handleFavourite = () => {
+    const favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+
+    if (isFavourite) {
+      // Remove from favourites if already favourited
+      const updatedFavourites = favourites.filter((show) => show.id !== id);
+      localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
+      setIsFavourite(false);
+    } else {
+      // Add to favourites
+      localStorage.setItem(
+        "favourites",
+        JSON.stringify([...favourites, showDetails])
+      );
+      setIsFavourite(true);
+    }
   };
 
   if (error) return <p>{error}</p>;
