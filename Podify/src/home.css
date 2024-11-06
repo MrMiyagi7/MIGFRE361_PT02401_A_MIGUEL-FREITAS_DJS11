@@ -8,7 +8,8 @@
 
 .podcast-card {
   position: relative;
-  width: 20em;
+  max-width: 20em;
+  height: 25em;
   overflow-y: hidden;
 
   overflow-x: hidden;
@@ -60,4 +61,36 @@
 .podcast-card:hover .podcast-description {
   transform: translateY(0%);
   display: inline;
+}
+
+.podcast-previews > a {
+  color: var(--text-color);
+}
+
+.genre-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.genre-select {
+  border: 2px solid var(--text-color);
+  border-radius: 4px;
+  padding: 0.5em;
+  font-size: 1em;
+  margin: 1em;
+  background-color: var(--primary-dark);
+  cursor: pointer;
+  transition: border-color 0.3s;
+  text-align: center;
+}
+
+.genre-select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.podcast-previews > .loader {
+  margin-top: 0;
 }
