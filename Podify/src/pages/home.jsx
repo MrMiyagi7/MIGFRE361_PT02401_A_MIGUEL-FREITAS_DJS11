@@ -54,6 +54,16 @@ export default function Home() {
         })
       );
 
+      // Filter out any null responses and sort alphabetically by title
+      const validShows = detailedShows
+        .filter((show) => show !== null)
+        .sort((a, b) => a.title.localeCompare(b.title));
+      setPodcasts(validShows);
+    } catch (error) {
+      console.error("Error fetching podcasts for selected genre:", error);
+      setError("Failed to fetch podcasts for selected genre");
+    }
+  };
     fetchPodcasts();
   }, []);
 
