@@ -19,20 +19,40 @@ export default function Home() {
   const [selectedGenreId, setSelectedGenreId] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchPodcasts = async () => {
-      try {
-        const response = await axios.get(
-          /* used axios hook to handle api fetch instead of using .then blocks (simplyfies api fetch)*/ "https://podcast-api.netlify.app"
-        );
-        const sortedPodcasts = response.data.sort((a, b) =>
-          a.title.localeCompare(b.title)
-        );
-        setPodcasts(sortedPodcasts);
-      } catch (error) {
-        setError("Failed to fetch podcasts");
-      }
-    };
+  const fetchPodcasts = async () => {
+    try {
+      const response = await axios.get("https://podcast-api.netlify.app");
+      // Sort podcasts alphabetically by title
+      const sortedPodcasts = response.data.sort((a, b) =>
+        a.title.localeCompare(b.title)
+      );
+      setPodcasts(sortedPodcasts);
+    } catch (error) {
+      console.error("Error fetching all podcasts:", error);
+      setError("Failed to fetch podcasts");
+    }
+  };
+
+  const fetchPodcastsByGenre = async (genreId) => {
+    try {
+      const genreResponse = await axios.get(
+        `https://podcast-api.netlify.app/genre/${genreId}`
+      );
+      const showIds = genreResponse.data.shows;
+
+      const detailedShows = await Promise.all(
+        showIds.map(async (id) => {
+          try {
+            const showResponse = await axios.get(
+              `https://podcast-api.netlify.app/id/${id}`
+            );
+            return showResponse.data;
+          } catch (showError) {
+            console.error(`Error fetching details for show ${id}:`, showError);
+            return null;
+          }
+        })
+      );
 
     fetchPodcasts();
   }, []);
