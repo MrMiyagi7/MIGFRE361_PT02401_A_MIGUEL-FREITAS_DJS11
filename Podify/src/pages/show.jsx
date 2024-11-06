@@ -17,6 +17,10 @@ export default function ShowDetails() {
           `https://podcast-api.netlify.app/id/${id}`
         );
         setShowDetails(response.data);
+
+        // Check if this show is already a favourite
+        const favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+        setIsFavourite(favourites.some((show) => show.id === id));
       } catch (error) {
         setError("Failed to fetch show details");
       }
