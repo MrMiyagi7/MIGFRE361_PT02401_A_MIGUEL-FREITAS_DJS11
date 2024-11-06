@@ -5,3 +5,5 @@ import { Link } from "react-router-dom";
 
 export default function EpisodeDetails() {
   const { id, seasonNumber, episodeId } = useParams();
+  const [episode, setEpisode] = useState(null);
+  const [error, setError] = useState(null);
