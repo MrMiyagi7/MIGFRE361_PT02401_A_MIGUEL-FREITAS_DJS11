@@ -35,6 +35,7 @@ export default function ShowDetails() {
 
   if (error) return <p>{error}</p>;
   if (!showDetails) return <p>Loading show details...</p>;
+  if (!showDetails) return <div className="loader"></div>;
 
   return (
     <div className="show-details">
