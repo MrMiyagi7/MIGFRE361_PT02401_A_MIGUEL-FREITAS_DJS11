@@ -30,3 +30,7 @@ export default function EpisodeDetails() {
 
     fetchEpisode();
   }, [id, seasonNumber, episodeId]);
+
+  console.log(episode);
+  if (error) return <p>{error}</p>;
+  if (!episode) return <div className="loader"></div>;
