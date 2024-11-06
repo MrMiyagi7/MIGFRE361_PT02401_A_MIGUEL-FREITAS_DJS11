@@ -82,23 +82,39 @@ export default function Home() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="podcast-previews">
-      {podcasts.length === 0 ? (
-        <p>Loading podcasts...</p>
-      ) : (
-        podcasts.map((podcast) => (
-          <Link to={`/show/${podcast.id}`} key={podcast.id}>
-            <div key={podcast.id} className="podcast-card">
-              <div className="podcast-info">
-                <img src={podcast.image} alt={`${podcast.title} cover`} />
-                <h3>{podcast.title}</h3>
-                <p className="podcast-description">{podcast.description}</p>
+    <div>
+      <div className="genre-container">
+        <select
+          className="genre-select"
+          onChange={handleGenreChange}
+          defaultValue=""
+        >
+          <option value="">All Genres</option>
+          {genres.map((genre) => (
+            <option key={genre.id} value={genre.id}>
+              {genre.title}
+            </option>
+          ))}
+        </select>
+        <h1>Podcast Shows</h1>
+      </div>
+      <div className="podcast-previews">
+        {podcasts.length === 0 ? (
           <div className="loader"></div>
+        ) : (
+          podcasts.map((podcast) => (
+            <Link to={`/show/${podcast.id}`} key={podcast.id}>
+              <div className="podcast-card">
+                <div className="podcast-info">
+                  <img src={podcast.image} alt={`${podcast.title} cover`} />
+                  <h3>{podcast.title}</h3>
+                  <p className="podcast-description">{podcast.description}</p>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))
-      )}
+            </Link>
+          ))
+        )}
+      </div>
     </div>
   );
 }
