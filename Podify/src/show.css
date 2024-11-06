@@ -83,6 +83,21 @@ h2 {
   margin-top: 5px;
 }
 
+.show-details > a {
+  color: var(--text-color);
+}
+
+li > a {
+  color: var(--text-color);
+}
+li > a:hover {
+  color: var(--text-color);
+}
+
+.show-details > a:hover {
+  color: var(--accent);
+}
+
 /* Adding a hover effect on episode titles */
 .season li:hover {
   background-color: var(--accent);

@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "../show.css";
 
 export default function ShowDetails() {
   const { id } = useParams(); // Extract show ID from URL parameters
+  const { id } = useParams();
   const [showDetails, setShowDetails] = useState(null);
   const [error, setError] = useState(null);
   const [expandedSeasons, setExpandedSeasons] = useState({});
@@ -53,6 +55,12 @@ export default function ShowDetails() {
                 {season.episodes.map((episode) => (
                   <li key={episode.id}>
                     <strong>{episode.title}</strong>: {episode.description}
+                  <li key={episode.episode}>
+                    <Link
+                      to={`/show/${id}/season/${season.season}/episode/${episode.episode}`}
+                    >
+                      <strong>{episode.title}</strong>: {episode.description}
+                    </Link>
                   </li>
                 ))}
               </ul>
