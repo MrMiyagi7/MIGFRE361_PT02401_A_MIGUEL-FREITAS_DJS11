@@ -69,6 +69,16 @@ export default function Home() {
     fetchPodcasts();
   }, []);
 
+  const handleGenreChange = (event) => {
+    const genreId = event.target.value ? parseInt(event.target.value) : null;
+    setSelectedGenreId(genreId);
+    if (genreId) {
+      fetchPodcastsByGenre(genreId);
+    } else {
+      fetchPodcasts(); // Fetch all podcasts again if "All Genres" is selected
+    }
+  };
+
   if (error) return <p>{error}</p>;
 
   return (
