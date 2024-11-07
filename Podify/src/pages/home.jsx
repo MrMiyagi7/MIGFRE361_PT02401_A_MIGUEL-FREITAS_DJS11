@@ -140,6 +140,9 @@ export default function Home() {
                   <h3>{podcast.title}</h3>
                   <h4>{`Seasons: ${podcast.seasons}`}</h4>
                   <h4>{`Last Updated: ${convertDate(podcast.updated)}`}</h4>
+                  <p className="podcast-genres">
+                    {`${getGenreTitles(podcast.genres)}`}
+                  </p>
                   <p className="podcast-description">{podcast.description}</p>
                 </div>
               </div>
