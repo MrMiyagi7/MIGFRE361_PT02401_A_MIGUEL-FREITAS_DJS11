@@ -95,6 +95,20 @@ export default function Home() {
     }
   };
 
+  const getGenreTitles = (genreIds) => {
+    if (!genreIds || !Array.isArray(genreIds)) return "Unknown";
+
+    const titles = genreIds
+      .map((id) => {
+        const genre = genres.find((genre) => genre.id === id);
+        return genre ? genre.title : null;
+      })
+      .filter(Boolean)
+      .join(", ");
+
+    return titles || "Unknown";
+  };
+
   if (error) return <p>{error}</p>;
 
   return (
