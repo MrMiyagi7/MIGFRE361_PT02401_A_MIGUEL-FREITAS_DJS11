@@ -38,7 +38,13 @@
 }
 
 .podcast-info h3 {
-  margin: 0.5em 0;
+  margin: 0;
+  transition: transform 0.3s ease;
+}
+
+.podcast-info h4 {
+  margin: 0;
+  font-size: 0.75em;
   transition: transform 0.3s ease;
 }
 
