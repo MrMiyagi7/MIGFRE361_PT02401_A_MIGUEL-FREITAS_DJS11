@@ -19,6 +19,20 @@ export default function Home() {
   const [selectedGenreId, setSelectedGenreId] = useState(null);
   const [error, setError] = useState(null);
 
+  const convertDate = (updated) => {
+    const ogDate = updated;
+
+    const date = new Date(ogDate);
+
+    const readableDate = date.toLocaleDateString("en-us", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    return readableDate;
+  };
+
   const fetchPodcasts = async () => {
     try {
       const response = await axios.get("https://podcast-api.netlify.app");
@@ -69,6 +83,8 @@ export default function Home() {
     fetchPodcasts();
   }, []);
 
+  console.log(podcasts);
+
   const handleGenreChange = (event) => {
     const genreId = event.target.value ? parseInt(event.target.value) : null;
     setSelectedGenreId(genreId);
@@ -96,7 +112,7 @@ export default function Home() {
             </option>
           ))}
         </select>
-        <h1>Podcast Shows</h1>
+        <h1> Browse Podcasts</h1>
       </div>
       <div className="podcast-previews">
         {podcasts.length === 0 ? (
@@ -109,6 +125,7 @@ export default function Home() {
                   <img src={podcast.image} alt={`${podcast.title} cover`} />
                   <h3>{podcast.title}</h3>
                   <h4>{`Seasons: ${podcast.seasons}`}</h4>
+                  <h4>{`Last Updated: ${convertDate(podcast.updated)}`}</h4>
                   <p className="podcast-description">{podcast.description}</p>
                 </div>
               </div>
