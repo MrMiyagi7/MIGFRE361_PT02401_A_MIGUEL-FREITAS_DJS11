@@ -108,6 +108,7 @@ export default function Home() {
                 <div className="podcast-info">
                   <img src={podcast.image} alt={`${podcast.title} cover`} />
                   <h3>{podcast.title}</h3>
+                  <h4>{`Seasons: ${podcast.seasons}`}</h4>
                   <p className="podcast-description">{podcast.description}</p>
                 </div>
               </div>
