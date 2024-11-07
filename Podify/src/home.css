@@ -9,7 +9,7 @@
 .podcast-card {
   position: relative;
   max-width: 20em;
-  height: 25em;
+  height: 26em;
   overflow-y: hidden;
 
   overflow-x: hidden;
@@ -46,6 +46,15 @@
   margin: 0;
   font-size: 0.75em;
   transition: transform 0.3s ease;
+}
+
+.podcast-genres {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.2em 0.5em;
+  font-size: 0.65em;
+  border: 1px solid var(--text-color);
+  border-radius: 1em;
 }
 
 .podcast-description {
