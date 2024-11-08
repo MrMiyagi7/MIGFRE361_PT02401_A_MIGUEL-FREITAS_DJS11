@@ -48,14 +48,9 @@ export default function Home() {
     }
   };
 
-  const fetchPodcasts = async () => {
   const fetchAllPodcasts = async () => {
     try {
       const response = await axios.get("https://podcast-api.netlify.app");
-      // Sort podcasts alphabetically by title
-      const sortedPodcasts = response.data.sort((a, b) =>
-        a.title.localeCompare(b.title)
-      );
       let sortedPodcasts = response.data;
       sortedPodcasts = sortPodcasts(sortedPodcasts); // Sort podcasts based on selected criteria
       setPodcasts(sortedPodcasts);
@@ -79,8 +74,6 @@ export default function Home() {
               `https://podcast-api.netlify.app/id/${id}`
             );
             return showResponse.data;
-          } catch (showError) {
-            console.error(`Error fetching details for show ${id}:`, showError);
           } catch (error) {
             console.error(`Error fetching details for show ${id}:`, error);
             return null;
@@ -88,11 +81,9 @@ export default function Home() {
         })
       );
 
-      // Filter out any null responses and sort alphabetically by title
-      const validShows = detailedShows
-        .filter((show) => show !== null)
-        .sort((a, b) => a.title.localeCompare(b.title));
-      setPodcasts(validShows);
+      const validShows = detailedShows.filter((show) => show !== null);
+      const sortedShows = sortPodcasts(validShows); // Sort podcasts by selected criteria
+      setPodcasts(sortedShows);
     } catch (error) {
       console.error("Error fetching podcasts for selected genre:", error);
       setError("Failed to fetch podcasts for selected genre");
@@ -100,10 +91,8 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetchPodcasts();
-  }, []);
-
-  console.log(podcasts);
+    fetchAllPodcasts();
+  }, [sortCriteria]); // Re-fetch podcasts when sortCriteria changes
 
   const handleGenreChange = (event) => {
     const genreId = event.target.value ? parseInt(event.target.value) : null;
@@ -111,7 +100,6 @@ export default function Home() {
     if (genreId) {
       fetchPodcastsByGenre(genreId);
     } else {
-      fetchPodcasts(); // Fetch all podcasts again if "All Genres" is selected
       fetchAllPodcasts(); // Fetch all podcasts if "All Genres" is selected
     }
   };
