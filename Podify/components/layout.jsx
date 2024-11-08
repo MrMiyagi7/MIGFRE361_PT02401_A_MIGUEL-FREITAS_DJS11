@@ -19,7 +19,7 @@ export default function Layout() {
     <div className="site-wrapper">
       <Header />
       <main>
-        <Outlet />
+        <Outlet context={{ handleAudioChange }} />
       </main>
       <Footer />
     </div>
