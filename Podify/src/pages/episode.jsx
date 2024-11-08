@@ -47,6 +47,10 @@ export default function EpisodeDetails() {
       <Link className="back-button" to={`/show/${id}`}>
         ← Back
       </Link>
+
+      {/* Display the season-specific cover image */}
+      <img src={season.image} alt={`Season ${season.season} cover`} />
+
       <h2>{episode.title}</h2>
       <p>{episode.description}</p>
       <audio controls>
