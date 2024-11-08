@@ -39,3 +39,9 @@ export default function AudioPlayer({ currentAudio, title, season }) {
       };
     }
   }, []);
+
+  const handleProgressClick = (event) => {
+    const clickPosition = event.nativeEvent.offsetX;
+    const barWidth = event.target.clientWidth;
+    const newTime = (clickPosition / barWidth) * audioRef.current.duration;
+    audioRef.current.currentTime = newTime;
