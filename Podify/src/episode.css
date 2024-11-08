@@ -77,3 +77,7 @@ ul li a {
 ul li a:hover {
   color: var(--accent);
 }
+
+.button-heart {
+  width: 1em;
+}

@@ -118,7 +118,7 @@
 
 .sort-container {
   display: flex;
-  justify-content: space-between;
+
   width: auto;
   align-items: center;
 }

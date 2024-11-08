@@ -51,6 +51,17 @@ nav {
   border-bottom: 1px solid var(--text-color);
 }
 
+.heart-icon {
+  width: 2em;
+  margin-right: 0.25em;
+}
+
+.favourite-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+}
 img {
   width: 5em;
 }
