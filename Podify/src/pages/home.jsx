@@ -49,12 +49,15 @@ export default function Home() {
   };
 
   const fetchPodcasts = async () => {
+  const fetchAllPodcasts = async () => {
     try {
       const response = await axios.get("https://podcast-api.netlify.app");
       // Sort podcasts alphabetically by title
       const sortedPodcasts = response.data.sort((a, b) =>
         a.title.localeCompare(b.title)
       );
+      let sortedPodcasts = response.data;
+      sortedPodcasts = sortPodcasts(sortedPodcasts); // Sort podcasts based on selected criteria
       setPodcasts(sortedPodcasts);
     } catch (error) {
       console.error("Error fetching all podcasts:", error);
@@ -78,6 +81,8 @@ export default function Home() {
             return showResponse.data;
           } catch (showError) {
             console.error(`Error fetching details for show ${id}:`, showError);
+          } catch (error) {
+            console.error(`Error fetching details for show ${id}:`, error);
             return null;
           }
         })
@@ -107,6 +112,7 @@ export default function Home() {
       fetchPodcastsByGenre(genreId);
     } else {
       fetchPodcasts(); // Fetch all podcasts again if "All Genres" is selected
+      fetchAllPodcasts(); // Fetch all podcasts if "All Genres" is selected
     }
   };
 
