@@ -21,7 +21,6 @@ export default function Layout() {
       <main>
         <Outlet context={{ handleAudioChange }} />
       </main>
-      <Footer />
       <AudioPlayer
         currentAudio={currentAudio}
         title={audioTitle}
