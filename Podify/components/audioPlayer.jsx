@@ -13,6 +13,19 @@ export default function AudioPlayer({ currentAudio, title, season }) {
     }
     setIsPlaying(!isPlaying);
   };
+
+  //   Reset audio to the beginning and autoplay when currentAudio changes
+  useEffect(() => {
+    if (audioRef.current && currentAudio) {
+      audioRef.current.pause(); // Stop the previous audio
+      audioRef.current.currentTime = 0; // Start from the beginning
+      audioRef.current.src = currentAudio; // Set new audio source
+      audioRef.current.load(); // Reload to apply changes
+      audioRef.current.play(); // Auto-play the new audio
+      setIsPlaying(true); // Ensure the play button state is correct
+    }
+  }, [currentAudio]);
+
   // Update progress based on audio time update
   useEffect(() => {
     const audio = audioRef.current;
