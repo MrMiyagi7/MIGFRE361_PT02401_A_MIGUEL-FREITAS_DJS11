@@ -5,7 +5,6 @@ import "../home.css";
 
 export default function Home() {
   const [podcasts, setPodcasts] = useState([]);
-  const [filteredPodcasts, setFilteredPodcasts] = useState([]);
   const [genres] = useState([
     { id: 1, title: "Personal Growth" },
     { id: 2, title: "Investigative Journalism" },
@@ -18,8 +17,8 @@ export default function Home() {
     { id: 9, title: "Kids and Family" },
   ]);
   const [selectedGenreId, setSelectedGenreId] = useState(null);
+  const [sortCriteria, setSortCriteria] = useState("a-z");
   const [error, setError] = useState(null);
-  const [sortOption, setSortOption] = useState("");
 
   const convertDate = (updated) => {
     const ogDate = updated;
