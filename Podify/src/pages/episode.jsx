@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, useOutletContext } from "react-router-dom";
 import axios from "axios";
 import "../episode.css";
-import ShowDetails from "./show";
 
 export default function EpisodeDetails() {
   const { id, seasonNumber, episodeId } = useParams();
   const [season, setSeason] = useState(null);
   const [episode, setEpisode] = useState(null);
   const [error, setError] = useState(null);
+  const [isFavourite, setIsFavourite] = useState(false);
   const { handleAudioChange } = useOutletContext();
 
+  // Fetch episode details and check if it's in favourites
   useEffect(() => {
     const fetchEpisodeDetails = async () => {
       try {
@@ -36,7 +37,14 @@ export default function EpisodeDetails() {
             selectedEpisode.title,
             showDetails.title
           );
-          console.log(season);
+
+          // Check if the episode is in favourites
+          const savedFavourites =
+            JSON.parse(localStorage.getItem("favourites")) || [];
+          const episodeInFavourites = savedFavourites.some(
+            (fav) => fav.episodeId === selectedEpisode.episode
+          );
+          setIsFavourite(episodeInFavourites);
         }
       } catch (error) {
         setError("Failed to load episode details.");
@@ -44,7 +52,38 @@ export default function EpisodeDetails() {
     };
 
     fetchEpisodeDetails();
-  }, [id, seasonNumber, episodeId]);
+  }, [id, seasonNumber, episodeId, handleAudioChange]);
+
+  console.log(episode);
+  // Handle adding/removing episode from favourites
+  const handleFavourite = () => {
+    const savedFavourites =
+      JSON.parse(localStorage.getItem("favourites")) || [];
+    let updatedFavourites;
+
+    if (isFavourite) {
+      // Remove from favourites
+      updatedFavourites = savedFavourites.filter(
+        (fav) => fav.episodeId !== episode.episode
+      );
+      localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
+      setIsFavourite(false);
+    } else {
+      // Add to favourites
+      const episodeDetails = {
+        episodeId: episode.episode,
+        showId: id,
+        title: episode.title,
+        description: episode.description,
+        image: season.image,
+        seasonNumber: season.season,
+        showTitle: season.title, // Assuming `season.showTitle` is the show title
+      };
+      updatedFavourites = [...savedFavourites, episodeDetails];
+      localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
+      setIsFavourite(true);
+    }
+  };
 
   if (error) return <p>{error}</p>;
   if (!episode || !season) return <div className="loader"></div>;
@@ -60,6 +99,11 @@ export default function EpisodeDetails() {
 
       <h2>{episode.title}</h2>
       <p>{episode.description}</p>
+
+      {/* Favourite button */}
+      <button onClick={handleFavourite}>
+        {isFavourite ? "Remove from Favourites" : "Add to Favourites"}
+      </button>
 
       <h3>All Other Episodes in Season {season.season}</h3>
       <ul>
