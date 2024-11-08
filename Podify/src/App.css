@@ -96,6 +96,75 @@ img {
   border-radius: 2em;
   text-align: center;
 }
+@media (max-width: 480px) {
+  .search-input {
+    width: 12em;
+    font-size: 0.9em;
+  }
+
+  .user-icon {
+    height: 1.2em;
+    width: 1.2em;
+  }
+
+  .podcast-card {
+    max-width: 15em;
+    height: auto;
+  }
+
+  .show-details h1,
+  h2,
+  h3 {
+    font-size: 1.5em;
+  }
+}
+
+/* General styling for mid-range screens (e.g., tablets) */
+@media (min-width: 600px) and (max-width: 768px) {
+  .search-input {
+    width: 16em;
+  }
+
+  img {
+    width: 4em;
+  }
+
+  .podcast-card {
+    max-width: 18em;
+  }
+}
+
+/* Large desktops (1024px and up) */
+@media (min-width: 1024px) {
+  .site-wrapper {
+    padding-bottom: 3em;
+  }
+}
+
+/* Specific styling for extra-large screens (1440px and up) */
+@media (min-width: 1440px) {
+  .podcast-card {
+    max-width: 22em;
+    height: 30em;
+  }
+
+  .search-input {
+    width: 26em;
+  }
+}
+
+/* Extra-wide screens (4K, 2560px and up) */
+@media (min-width: 2560px) {
+  .container {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .podcast-card {
+    max-width: 30em;
+    height: 35em;
+  }
+}
 /* Small screens (Tablets, 600px and up) */
 @media (min-width: 600px) {
   nav {
