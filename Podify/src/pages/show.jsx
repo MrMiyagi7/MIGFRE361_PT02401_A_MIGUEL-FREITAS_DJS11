@@ -8,7 +8,6 @@ export default function ShowDetails() {
   const [showDetails, setShowDetails] = useState(null);
   const [error, setError] = useState(null);
   const [expandedSeasons, setExpandedSeasons] = useState({});
-  const [isFavourite, setIsFavourite] = useState(false);
 
   useEffect(() => {
     const fetchShowDetails = async () => {
@@ -17,10 +16,6 @@ export default function ShowDetails() {
           `https://podcast-api.netlify.app/id/${id}`
         );
         setShowDetails(response.data);
-
-        // Check if this show is already a favourite
-        const favourites = JSON.parse(localStorage.getItem("favourites")) || [];
-        setIsFavourite(favourites.some((show) => show.id === id));
       } catch (error) {
         setError("Failed to fetch show details");
       }
@@ -28,29 +23,12 @@ export default function ShowDetails() {
     fetchShowDetails();
   }, [id]);
 
-  //   Toggle visibility for a season
+  // Toggle visibility for a season
   const toggleSeason = (seasonNumber) => {
     setExpandedSeasons((prevExpanded) => ({
       ...prevExpanded,
       [seasonNumber]: !prevExpanded[seasonNumber],
     }));
-  };
-  const handleFavourite = () => {
-    const favourites = JSON.parse(localStorage.getItem("favourites")) || [];
-
-    if (isFavourite) {
-      // Remove from favourites if already favourited
-      const updatedFavourites = favourites.filter((show) => show.id !== id);
-      localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
-      setIsFavourite(false);
-    } else {
-      // Add to favourites
-      localStorage.setItem(
-        "favourites",
-        JSON.stringify([...favourites, showDetails])
-      );
-      setIsFavourite(true);
-    }
   };
 
   console.log(showDetails);
@@ -66,9 +44,7 @@ export default function ShowDetails() {
       <h1>{showDetails.title}</h1>
       <img src={showDetails.image} alt={`${showDetails.title} cover`} />
       <p>{showDetails.description}</p>
-      <button onClick={handleFavourite}>
-        {isFavourite ? "Unfavourite" : "Add to Favourites"}
-      </button>
+
       <h2>Seasons {showDetails.seasons.length}</h2>
       {showDetails.seasons && showDetails.seasons.length > 0 ? (
         showDetails.seasons.map((season) => (
