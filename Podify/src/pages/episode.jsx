@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, useOutletContext } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "../episode.css";
+import ShowDetails from "./show";
 
 export default function EpisodeDetails() {
   const { id, seasonNumber, episodeId } = useParams();
