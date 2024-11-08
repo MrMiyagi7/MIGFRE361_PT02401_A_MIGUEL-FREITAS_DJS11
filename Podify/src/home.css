@@ -139,3 +139,23 @@
   outline: none;
   border-color: var(--accent);
 }
+
+.podcast-info-favourite {
+  position: relative;
+  text-align: center;
+}
+
+.podcast-info-favourite img {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+}
+
+.podcast-info-favourite h3 {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.podcast-info-favourite h4 {
+  margin: 0;
+  font-size: 0.75em;
+}
