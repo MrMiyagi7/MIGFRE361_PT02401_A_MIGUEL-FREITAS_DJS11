@@ -105,16 +105,14 @@ export default function Home() {
   };
 
   const getGenreTitles = (genreIds) => {
-    if (!genreIds || !Array.isArray(genreIds)) return "Unknown";
-
+    if (!Array.isArray(genreIds) || genreIds.length === 0) return "Unknown";
     const titles = genreIds
-      .map((id) => {
-        const genre = genres.find((genre) => genre.id === id);
-        return genre ? genre.title : null;
+      .map((genreId) => {
+        const matchingGenre = genres.find((genre) => genre.id === genreId);
+        return matchingGenre ? matchingGenre.title : null;
       })
       .filter(Boolean)
       .join(", ");
-
     return titles || "Unknown";
   };
 
