@@ -45,3 +45,29 @@ export default function AudioPlayer({ currentAudio, title, season }) {
     const barWidth = event.target.clientWidth;
     const newTime = (clickPosition / barWidth) * audioRef.current.duration;
     audioRef.current.currentTime = newTime;
+  };
+
+  return (
+    <div className="audio-player">
+      <div className="audio-info">
+        {currentAudio ? (
+          <div>
+            <strong>{season}:</strong>
+            <strong className="episode-title"> {title}</strong>
+          </div>
+        ) : (
+          <div>No audio playing</div>
+        )}
+      </div>
+      <div className="controls">
+        <audio ref={audioRef} preload="auto" key={currentAudio} />
+        <button onClick={togglePlayPause}>
+          {isPlaying ? "Pause" : "Play"}
+        </button>
+        <div className="progress-bar" onClick={handleProgressClick}>
+          <div className="progress" style={{ width: `${progress}%` }} />
+        </div>
+      </div>
+    </div>
+  );
+}
