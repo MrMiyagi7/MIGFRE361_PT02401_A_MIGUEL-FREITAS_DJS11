@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 
 export default function EpisodeDetails() {
   const { id, seasonNumber, episodeId } = useParams();
+  const [season, setSeason] = useState(null);
   const [episode, setEpisode] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchEpisode = async () => {
+    const fetchEpisodeDetails = async () => {
       try {
         const response = await axios.get(
           `https://podcast-api.netlify.app/id/${id}`
@@ -18,22 +20,27 @@ export default function EpisodeDetails() {
         const selectedSeason = showDetails.seasons.find(
           (season) => season.season === parseInt(seasonNumber)
         );
-        const selectedEpisode = selectedSeason.episodes.find(
-          (ep) => ep.episode === parseInt(episodeId)
-        );
 
-        setEpisode(selectedEpisode);
+        if (selectedSeason) {
+          const selectedEpisode = selectedSeason.episodes.find(
+            (ep) => ep.episode === parseInt(episodeId)
+          );
+
+          setSeason(selectedSeason);
+          setEpisode(selectedEpisode);
+          );
+          console.log(season);
+        }
       } catch (error) {
         setError("Failed to load episode details.");
       }
     };
 
-    fetchEpisode();
+    fetchEpisodeDetails();
   }, [id, seasonNumber, episodeId]);
 
-  console.log(episode);
   if (error) return <p>{error}</p>;
-  if (!episode) return <div className="loader"></div>;
+  if (!episode || !season) return <div className="loader"></div>;
 
   return (
     <div className="episode-details">
@@ -46,6 +53,21 @@ export default function EpisodeDetails() {
         <source src={episode.file} type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
+
+      <h3>All Other Episodes in Season {season.season}</h3>
+      <ul>
+        {season.episodes
+          .filter((ep) => ep.episode !== parseInt(episodeId)) // Exclude the current episode
+          .map((ep) => (
+            <li key={ep.episode}>
+              <Link
+                to={`/show/${id}/season/${season.season}/episode/${ep.episode}`}
+              >
+                Ep.{ep.episode} {ep.title}
+              </Link>
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }
