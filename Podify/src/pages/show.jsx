@@ -53,6 +53,8 @@ export default function ShowDetails() {
     }
   };
 
+  console.log(showDetails);
+
   if (error) return <p>{error}</p>;
   if (!showDetails) return <div className="loader"></div>;
 
@@ -67,7 +69,7 @@ export default function ShowDetails() {
       <button onClick={handleFavourite}>
         {isFavourite ? "Unfavourite" : "Add to Favourites"}
       </button>
-      <h2>Seasons</h2>
+      <h2>Seasons {showDetails.seasons.length}</h2>
       {showDetails.seasons && showDetails.seasons.length > 0 ? (
         showDetails.seasons.map((season) => (
           <div key={season.season} className="season">
