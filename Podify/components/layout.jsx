@@ -22,6 +22,11 @@ export default function Layout() {
         <Outlet context={{ handleAudioChange }} />
       </main>
       <Footer />
+      <AudioPlayer
+        currentAudio={currentAudio}
+        title={audioTitle}
+        season={season}
+      />
     </div>
   );
 }
