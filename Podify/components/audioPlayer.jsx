@@ -13,3 +13,16 @@ export default function AudioPlayer({ currentAudio, title, season }) {
     }
     setIsPlaying(!isPlaying);
   };
+  // Update progress based on audio time update
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      const updateProgress = () => {
+        setProgress((audio.currentTime / audio.duration) * 100);
+      };
+      audio.addEventListener("timeupdate", updateProgress);
+      return () => {
+        audio.removeEventListener("timeupdate", updateProgress);
+      };
+    }
+  }, []);
