@@ -77,7 +77,8 @@ export default function EpisodeDetails() {
         description: episode.description,
         image: season.image,
         seasonNumber: season.season,
-        showTitle: season.title, // Assuming `season.showTitle` is the show title
+        showTitle: season.title,
+        addedAt: new Date().toLocaleString(),
       };
       updatedFavourites = [...savedFavourites, episodeDetails];
       localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
@@ -94,13 +95,11 @@ export default function EpisodeDetails() {
         ← Back
       </Link>
 
-      {/* Display the season-specific cover image */}
       <img src={season.image} alt={`Season ${season.season} cover`} />
 
       <h2>{episode.title}</h2>
       <p>{episode.description}</p>
 
-      {/* Favourite button */}
       <button onClick={handleFavourite}>
         {isFavourite ? "Remove from Favourites" : "Add to Favourites"}
       </button>
