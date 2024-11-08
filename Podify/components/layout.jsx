@@ -5,6 +5,9 @@ import Footer from "./footer";
 import AudioPlayer from "./audioPlayer";
 
 export default function Layout() {
+  const [currentAudio, setCurrentAudio] = useState(null);
+  const [audioTitle, setAudioTitle] = useState("");
+  const [season, setSeason] = useState("");
   return (
     <div className="site-wrapper">
       <Header />
