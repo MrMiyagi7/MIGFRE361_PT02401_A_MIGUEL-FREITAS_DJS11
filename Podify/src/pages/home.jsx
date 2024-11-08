@@ -21,17 +21,14 @@ export default function Home() {
   const [error, setError] = useState(null);
 
   const convertDate = (updated) => {
-    const ogDate = updated;
-
-    const date = new Date(ogDate);
-
-    const readableDate = date.toLocaleDateString("en-us", {
+    const date = new Date(updated);
+    return date.toLocaleDateString("en-us", {
       year: "numeric",
       month: "long",
       day: "numeric",
     });
+  };
 
-    return readableDate;
   };
 
   const fetchPodcasts = async () => {
