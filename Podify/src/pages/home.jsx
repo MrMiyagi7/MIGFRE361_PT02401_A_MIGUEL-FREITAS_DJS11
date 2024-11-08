@@ -133,7 +133,6 @@ export default function Home() {
             </option>
           ))}
         </select>
-        <h1> Browse Podcasts</h1>
 
         <label htmlFor="sort">Sort by: </label>
         <select
@@ -162,6 +161,11 @@ export default function Home() {
                   <img src={podcast.image} alt={`${podcast.title} cover`} />
                   <h3>{podcast.title}</h3>
                   <h4>{`Seasons: ${podcast.seasons}`}</h4>
+                  <h4>{`Seasons: ${
+                    Array.isArray(podcast.seasons)
+                      ? podcast.seasons.length
+                      : podcast.seasons
+                  }`}</h4>
                   <h4>{`Last Updated: ${convertDate(podcast.updated)}`}</h4>
                   <p className="podcast-genres">
                     {`${getGenreTitles(podcast.genres)}`}
