@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useOutletContext } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "../episode.css";
 import ShowDetails from "./show";
 
@@ -10,6 +9,7 @@ export default function EpisodeDetails() {
   const [season, setSeason] = useState(null);
   const [episode, setEpisode] = useState(null);
   const [error, setError] = useState(null);
+  const { handleAudioChange } = useOutletContext();
 
   useEffect(() => {
     const fetchEpisode = async () => {
@@ -19,6 +19,8 @@ export default function EpisodeDetails() {
           `https://podcast-api.netlify.app/id/${id}`
         );
         const showDetails = response.data;
+
+        // Find the selected season and episode
         const selectedSeason = showDetails.seasons.find(
           (season) => season.season === parseInt(seasonNumber)
         );
@@ -30,6 +32,10 @@ export default function EpisodeDetails() {
 
           setSeason(selectedSeason);
           setEpisode(selectedEpisode);
+          handleAudioChange(
+            selectedEpisode.file,
+            selectedEpisode.title,
+            showDetails.title
           );
           console.log(season);
         }
