@@ -1,0 +1,79 @@
+.episode-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}
+
+.episode-details img {
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin: 0 auto 20px;
+  border-radius: 10px;
+}
+
+.episode-title {
+  color: var(--accent);
+  margin-left: 0.5em;
+}
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+h3 {
+  font-size: 20px;
+  margin-top: 30px;
+  color: var(--text-color);
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+audio {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  padding: 10px;
+  border-bottom: 1px solid var(--text-color);
+  display: flex;
+  flex-direction: column;
+}
+
+ul li a {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  margin-top: 5px;
+  margin-top: 5px;
+}
+
+ul li a:hover {
+  color: var(--accent);
+}
