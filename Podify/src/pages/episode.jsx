@@ -12,7 +12,6 @@ export default function EpisodeDetails() {
   const { handleAudioChange } = useOutletContext();
 
   useEffect(() => {
-    const fetchEpisode = async () => {
     const fetchEpisodeDetails = async () => {
       try {
         const response = await axios.get(
@@ -61,10 +60,6 @@ export default function EpisodeDetails() {
 
       <h2>{episode.title}</h2>
       <p>{episode.description}</p>
-      <audio controls>
-        <source src={episode.file} type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
 
       <h3>All Other Episodes in Season {season.season}</h3>
       <ul>
