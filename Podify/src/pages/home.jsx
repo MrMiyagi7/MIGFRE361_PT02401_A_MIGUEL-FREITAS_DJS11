@@ -134,6 +134,22 @@ export default function Home() {
           ))}
         </select>
         <h1> Browse Podcasts</h1>
+
+        <label htmlFor="sort">Sort by: </label>
+        <select
+          id="sort"
+          className="sort-select"
+          value={sortCriteria}
+          onChange={(e) => setSortCriteria(e.target.value)}
+        >
+          <option value="a-z">A-Z</option>
+          <option value="z-a">Z-A</option>
+          <option value="recently-updated">Most Recently Updated</option>
+          <option value="furthest-updated">Furthest Time Updated</option>
+        </select>
+      </div>
+      <div className="browse-heading">
+        <h1>Browse Podcasts</h1>
       </div>
       <div className="podcast-previews">
         {podcasts.length === 0 ? (
