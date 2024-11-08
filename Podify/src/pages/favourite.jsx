@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 import "../home.css";
 
 export default function Favourites() {
-  const [favourites, setFavourites] = useState([]); // State to store the favourites
-  const [sortCriteria, setSortCriteria] = useState("a-z"); // State for sorting criteria
-
-  // Function to convert date to a readable format
+  const [favourites, setFavourites] = useState([]);
+  const [sortCriteria, setSortCriteria] = useState("a-z");
 
   // Sorting function for favourites
   const sortFavourites = (favourites) => {
@@ -34,29 +32,30 @@ export default function Favourites() {
       JSON.parse(localStorage.getItem("favourites")) || [];
     // Apply sorting to favourites after fetching
     const sortedFavourites = sortFavourites(storedFavourites);
-    setFavourites(sortedFavourites); // Set the sorted favourites into state
+    setFavourites(sortedFavourites);
   };
 
   // Fetch favourites on page load
   useEffect(() => {
     fetchFavourites();
-  }, []); // Fetch favourites once when the component mounts
+  }, []);
 
   // Re-sort favourites whenever sortCriteria changes
   useEffect(() => {
     if (favourites.length > 0) {
-      const sortedFavourites = sortFavourites([...favourites]); // Sort based on current sortCriteria
-      setFavourites(sortedFavourites); // Update the state with the sorted list
+      const sortedFavourites = sortFavourites([...favourites]);
+      setFavourites(sortedFavourites);
+      st;
     }
-  }, [sortCriteria]); // Re-sort favourites when the sorting criteria changes
+  }, [sortCriteria]);
 
   // Handle removing a single episode from favourites
   const handleRemoveFavourite = (episodeId) => {
     const updatedFavourites = favourites.filter(
       (episode) => episode.episodeId !== episodeId
     );
-    setFavourites(updatedFavourites); // Update the state
-    localStorage.setItem("favourites", JSON.stringify(updatedFavourites)); // Update localStorage
+    setFavourites(updatedFavourites);
+    localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
   };
 
   // Handle resetting all favourites
@@ -65,8 +64,8 @@ export default function Favourites() {
       "Are you sure you want to clear all favourites?"
     );
     if (confirmed) {
-      localStorage.removeItem("favourites"); // Remove all favourites from localStorage
-      setFavourites([]); // Clear the state
+      localStorage.removeItem("favourites");
+      setFavourites([]);
     }
   };
 
@@ -74,7 +73,6 @@ export default function Favourites() {
     <div className="favourites">
       <h1>Your Favourite Episodes</h1>
 
-      {/* Sorting options */}
       <div className="sort-container">
         <label htmlFor="sort">Sort by: </label>
         <select
@@ -89,12 +87,10 @@ export default function Favourites() {
         </select>
       </div>
 
-      {/* Reset button */}
       <button onClick={handleResetFavourites} className="reset-favourites">
         Reset All Favourites
       </button>
 
-      {/* Display Favourites */}
       <div className="podcast-previews">
         {favourites.length === 0 ? (
           <p>No favourite episodes yet!</p>
@@ -114,7 +110,6 @@ export default function Favourites() {
                   </h4>
                 </Link>
 
-                {/* Remove favourite button */}
                 <button
                   className="remove-favourite"
                   onClick={() => handleRemoveFavourite(episode.episodeId)}

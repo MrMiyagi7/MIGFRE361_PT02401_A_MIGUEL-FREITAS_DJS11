@@ -301,7 +301,7 @@ footer {
 }
 
 .audio-info {
-  margin-bottom: 10px; /* Adds some space between title and controls */
+  margin-bottom: 10px;
   text-align: center;
   color: var(--text-color);
 }
@@ -318,7 +318,7 @@ footer {
   border: none;
   cursor: pointer;
   padding: 5px 10px;
-  margin-right: 10px; /* Adds space between button and progress bar */
+  margin-right: 10px; /
 }
 
 .progress-bar {

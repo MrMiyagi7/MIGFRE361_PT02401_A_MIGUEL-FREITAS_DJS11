@@ -100,7 +100,7 @@ export default function Home() {
     if (genreId) {
       fetchPodcastsByGenre(genreId);
     } else {
-      fetchAllPodcasts(); // Fetch all podcasts if "All Genres" is selected
+      fetchAllPodcasts();
     }
   };
 

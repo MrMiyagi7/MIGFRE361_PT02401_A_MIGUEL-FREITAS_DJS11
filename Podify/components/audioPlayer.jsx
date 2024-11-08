@@ -17,12 +17,12 @@ export default function AudioPlayer({ currentAudio, title, season }) {
   //   Reset audio to the beginning and autoplay when currentAudio changes
   useEffect(() => {
     if (audioRef.current && currentAudio) {
-      audioRef.current.pause(); // Stop the previous audio
-      audioRef.current.currentTime = 0; // Start from the beginning
-      audioRef.current.src = currentAudio; // Set new audio source
-      audioRef.current.load(); // Reload to apply changes
-      audioRef.current.play(); // Auto-play the new audio
-      setIsPlaying(true); // Ensure the play button state is correct
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      audioRef.current.src = currentAudio;
+      audioRef.current.load();
+      audioRef.current.play();
+      setIsPlaying(true);
     }
   }, [currentAudio]);
 

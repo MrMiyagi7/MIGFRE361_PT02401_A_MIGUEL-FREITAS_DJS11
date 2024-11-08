@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import darklogo from "../src/assets/dark-logo.png";
+
 import lightlogo from "../src/assets/light-logo.png";
 import heart from "../src/assets/heart.svg";
 
