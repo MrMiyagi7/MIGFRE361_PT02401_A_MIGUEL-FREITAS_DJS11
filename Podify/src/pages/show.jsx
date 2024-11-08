@@ -74,7 +74,7 @@ export default function ShowDetails() {
         showDetails.seasons.map((season) => (
           <div key={season.season} className="season">
             <h3 onClick={() => toggleSeason(season.season)}>
-              Season {season.season}{" "}
+              Season {season.season} ({season.episodes.length} episodes){" "}
               {expandedSeasons[season.season] ? "▲" : "▼"}
             </h3>
             {expandedSeasons[season.season] && (
