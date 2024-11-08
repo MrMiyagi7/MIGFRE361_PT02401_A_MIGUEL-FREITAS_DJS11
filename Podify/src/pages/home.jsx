@@ -150,6 +150,7 @@ export default function Home() {
       <div className="browse-heading">
         <h1>Browse Podcasts</h1>
       </div>
+
       <div className="podcast-previews">
         {podcasts.length === 0 ? (
           <div className="loader"></div>
@@ -160,16 +161,17 @@ export default function Home() {
                 <div className="podcast-info">
                   <img src={podcast.image} alt={`${podcast.title} cover`} />
                   <h3>{podcast.title}</h3>
-                  <h4>{`Seasons: ${podcast.seasons}`}</h4>
                   <h4>{`Seasons: ${
                     Array.isArray(podcast.seasons)
                       ? podcast.seasons.length
                       : podcast.seasons
                   }`}</h4>
                   <h4>{`Last Updated: ${convertDate(podcast.updated)}`}</h4>
-                  <p className="podcast-genres">
-                    {`${getGenreTitles(podcast.genres)}`}
-                  </p>
+                  {selectedGenreId === null && (
+                    <p className="podcast-genres">
+                      {`${getGenreTitles(podcast.genres)}`}
+                    </p>
+                  )}
                   <p className="podcast-description">{podcast.description}</p>
                 </div>
               </div>
