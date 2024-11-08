@@ -29,6 +29,23 @@ export default function Home() {
     });
   };
 
+  const sortPodcasts = (podcasts) => {
+    switch (sortCriteria) {
+      case "a-z":
+        return podcasts.sort((a, b) => a.title.localeCompare(b.title));
+      case "z-a":
+        return podcasts.sort((a, b) => b.title.localeCompare(a.title));
+      case "recently-updated":
+        return podcasts.sort(
+          (a, b) => new Date(b.updated) - new Date(a.updated)
+        );
+      case "furthest-updated":
+        return podcasts.sort(
+          (a, b) => new Date(a.updated) - new Date(b.updated)
+        );
+      default:
+        return podcasts;
+    }
   };
 
   const fetchPodcasts = async () => {
