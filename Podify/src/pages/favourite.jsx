@@ -45,7 +45,6 @@ export default function Favourites() {
     if (favourites.length > 0) {
       const sortedFavourites = sortFavourites([...favourites]);
       setFavourites(sortedFavourites);
-      st;
     }
   }, [sortCriteria]);
 
