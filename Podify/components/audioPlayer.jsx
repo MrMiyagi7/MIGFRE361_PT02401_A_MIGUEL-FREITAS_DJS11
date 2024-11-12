@@ -60,7 +60,7 @@ export default function AudioPlayer({ currentAudio, title, season }) {
         )}
       </div>
       <div className="controls">
-        <audio ref={audioRef} preload="auto" key={currentAudio} />
+        <audio ref={audioRef} preload="auto" />
         <button onClick={togglePlayPause}>
           {isPlaying ? "Pause" : "Play"}
         </button>
