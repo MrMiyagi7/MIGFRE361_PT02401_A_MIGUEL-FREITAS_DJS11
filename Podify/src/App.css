@@ -324,7 +324,7 @@ footer {
 .progress-bar {
   flex: 1;
   height: 5px;
-  background-color: var(--primary-dark);
+  background-color: var(--secondary-dark);
   cursor: pointer;
   margin: 0 10px;
   border-radius: 5px;
